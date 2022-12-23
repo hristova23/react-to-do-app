@@ -3,7 +3,7 @@ import Task from './Task'
 
 export default function ToDoList({tasks}) {
   return (
-    tasks.map(task => {
+    tasks?.map(task => {
         return <Task task={task}/>
     })
   )
