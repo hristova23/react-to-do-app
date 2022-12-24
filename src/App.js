@@ -29,12 +29,18 @@ function App() {
     taskNameRef.current.value = null;
   }
 
+  function handleClearTasks(){
+    const incompletedTasks = tasks.filter(task => !task.isCompleted);
+    setTasks(incompletedTasks)
+  }
+
   return (
     <>
     Tasks:
     <ToDoList tasks={tasks} toggleTask={toggleTask}/>
     <input ref={taskNameRef} type="text" />
     <button onClick={handleAddTask}>Add Task</button>
+    <button onClick={handleClearTasks}>Clear</button>
     <div>{tasks.filter(task => !task.isCompleted).length} tasks left.</div>
     </>
   )
