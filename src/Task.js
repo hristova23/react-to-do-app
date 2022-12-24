@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaClock } from 'react-icons/fa';
 
 export default function Task({task, toggleTask, deleteTask}) {
 
@@ -29,8 +29,8 @@ export default function Task({task, toggleTask, deleteTask}) {
             </a>
             </div>
             <div className="text-end text-muted">
-            <a href="#!" className="text-muted" data-mdb-toggle="tooltip" title="Created date">
-                <p className="small mb-0"><i className="fas fa-info-circle me-2"></i>24th Dec 2022</p>
+            <a href="#!" className="text-muted">
+                <p className="small mb-0"><FaClock />Due {task.date}</p>
             </a>
             </div>
         </li>

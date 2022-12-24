@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from "react";
 import ToDoList from "./ToDoList";
 import { v4 as uuidv4 } from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FaCheckSquare, FaCalendarAlt, FaSortAmountDownAlt } from 'react-icons/fa';
+import { FaCheckSquare, FaSortAmountDownAlt } from 'react-icons/fa';
 import { VscClearAll } from 'react-icons/vsc';
 
 
@@ -12,6 +12,7 @@ function App() {
     return localData ? JSON.parse(localData) : []
   })
   const taskNameRef = useRef();
+  const dateRef = useRef();
   
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -33,7 +34,7 @@ function App() {
     const name = taskNameRef.current.value
     if(name === '') return
     setTasks(prevTasks => {
-      return [...prevTasks, {id: uuidv4(), name:name, isCompleted: false}]
+      return [...prevTasks, {id: uuidv4(), name:name, date:dateRef.current.value, isCompleted: false}]
     })
     taskNameRef.current.value = null;
   }
@@ -64,7 +65,7 @@ function App() {
                               <input ref={taskNameRef} type="text" className="form-control form-control-lg"
                               placeholder="Add new..." />
                               <a href="#!" data-mdb-toggle="tooltip" title="Set due date">
-                                <FaCalendarAlt size={28} /></a>
+                                <input ref={dateRef} type="date" value={new Date().toISOString().slice(0, 10)} className="form-control form-control-lg" /></a>
                               <div>
                               <button onClick={handleAddTask} className="btn btn-primary">Add</button>
                               </div>
