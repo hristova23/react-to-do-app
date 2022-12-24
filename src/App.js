@@ -41,11 +41,6 @@ function App() {
     taskNameRef.current.value = null;
   }
 
-  function handleClearTasks(){
-    const incompletedTasks = tasks.filter(task => !task.isCompleted);
-    setTasks(incompletedTasks)
-  }
-
   return (
     <>
       <section className="vh-100">
@@ -90,9 +85,11 @@ function App() {
                             <option value="Recent">Recent</option>
                             <option value="Older">Older</option>
                         </select>
-                        <a href="#!" style={{color:"#23af89"}} data-mdb-toggle="tooltip" title="Ascending">
+                        <a href="#!" style={{color:"#23af89"}} data-mdb-toggle="tooltip" title="Sort">
                           <FaSortAmountDownAlt />
-                          <VscClearAll size={20} color={"red"} onClick={handleClearTasks} />
+                        </a>
+                        <a href="#!" style={{color:"#23af89"}} data-mdb-toggle="tooltip" title="Clear All">
+                          <VscClearAll size={20} color={"red"} onClick={() => setTasks([])} />
                         </a>
                         </div>
 
