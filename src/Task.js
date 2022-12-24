@@ -1,10 +1,14 @@
 import React from 'react'
 import { FaTrashAlt } from 'react-icons/fa';
 
-export default function Task({task, toggleTask}) {
+export default function Task({task, toggleTask, deleteTask}) {
 
   function handleTaskClick(){
     toggleTask(task.id)
+  }
+
+  function handleDeleteTask(){
+    deleteTask(task.id)
   }
 
   return (
@@ -21,7 +25,7 @@ export default function Task({task, toggleTask}) {
         </li>
         <li className="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
             <div className="d-flex flex-row justify-content-end mb-1">
-            <a href="#!" className="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><FaTrashAlt />
+            <a href="#!" className="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><FaTrashAlt onClick={handleDeleteTask}/>
             </a>
             </div>
             <div className="text-end text-muted">

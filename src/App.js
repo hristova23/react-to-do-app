@@ -24,6 +24,11 @@ function App() {
     setTasks(tasksTemp)
   }
 
+  function deleteTask(id){
+    const tasksTemp = tasks.filter(task => task.id !== id)
+    setTasks(tasksTemp)
+  }
+
   function handleAddTask(){
     const name = taskNameRef.current.value
     if(name === '') return
@@ -88,7 +93,7 @@ function App() {
                         </a>
                         </div>
 
-                      <ToDoList tasks={tasks} toggleTask={toggleTask}/>
+                      <ToDoList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
 
                       <div>{tasks.filter(task => !task.isCompleted).length} tasks left.</div>
                   </div>
