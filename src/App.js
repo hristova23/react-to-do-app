@@ -35,6 +35,7 @@ function App() {
     <ToDoList tasks={tasks} toggleTask={toggleTask}/>
     <input ref={taskNameRef} type="text" />
     <button onClick={handleAddTask}>Add Task</button>
+    <div>{tasks.filter(task => !task.isCompleted).length} tasks left.</div>
     </>
   )
 }
