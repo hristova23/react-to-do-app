@@ -11,8 +11,14 @@ function App() {
   
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
-    console.log('reloading')
   }, [tasks]);
+
+  function toggleTask(id){
+    const tasksTemp = [...tasks]
+    const task = tasksTemp.find(task => task.id === id)
+    task.isCompleted = !task.isCompleted;
+    setTasks(tasksTemp)
+  }
 
   function handleAddTask(){
     const name = taskNameRef.current.value
@@ -26,7 +32,7 @@ function App() {
   return (
     <>
     Tasks:
-    <ToDoList tasks={tasks}/>
+    <ToDoList tasks={tasks} toggleTask={toggleTask}/>
     <input ref={taskNameRef} type="text" />
     <button onClick={handleAddTask}>Add Task</button>
     </>

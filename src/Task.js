@@ -1,9 +1,17 @@
 import React from 'react'
 
-export default function Task({task}) {
+export default function Task({task, toggleTask}) {
+
+  function handleTaskClick(){
+    toggleTask(task.id)
+  }
+
   return (
     <div>
-        {task.name} - {String(task.isCompleted)}
+      <label>
+        <input type="checkbox" checked={task.isCompleted} onChange={handleTaskClick} />
+        {task.name}
+      </label>
     </div>
   )
 }
