@@ -11,6 +11,8 @@ function App() {
     const localData = localStorage.getItem('tasks')
     return localData ? JSON.parse(localData) : []
   })
+  const [filter, setFilter] = useState();
+
   const taskNameRef = useRef();
   const dateRef = useRef();
   
@@ -78,15 +80,15 @@ function App() {
 
                       <div className="d-flex justify-content-end align-items-center mb-4 pt-2 pb-3">
                         <p className="small mb-0 me-2 text-muted">Filter</p>
-                        <select className="select">
-                            <option value="1">All</option>
-                            <option value="2">Completed</option>
-                            <option value="3">Incompleted</option>
+                        <select onChange={(e) => setFilter(e.target.value)} className="select">
+                            <option value="All">All</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Incompleted">Incompleted</option>
                         </select>
                         <p className="small mb-0 ms-4 me-2 text-muted">Sort</p>
                         <select className="select">
-                            <option value="1">Recent</option>
-                            <option value="2">Older</option>
+                            <option value="Recent">Recent</option>
+                            <option value="Older">Older</option>
                         </select>
                         <a href="#!" style={{color:"#23af89"}} data-mdb-toggle="tooltip" title="Ascending">
                           <FaSortAmountDownAlt />
@@ -94,7 +96,7 @@ function App() {
                         </a>
                         </div>
 
-                      <ToDoList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask}/>
+                      <ToDoList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} filter={filter}/>
 
                       <div>{tasks.filter(task => !task.isCompleted).length} tasks left.</div>
                   </div>
